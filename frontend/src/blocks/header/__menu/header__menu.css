@@ -1,0 +1,11 @@
+.header__menu {
+  display: flex;
+  justify-content: right;
+}
+
+@media screen and (max-width: 882px) {
+  .header__menu {
+    padding-right: 13px;
+    padding-top: 30px;
+  }
+}

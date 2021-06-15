@@ -1,0 +1,15 @@
+.cards_section {
+  margin-top: 50px;
+}
+
+@media screen and (max-width: 724px) {
+	.cards_section {
+    margin-top: 43px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+	.cards_section {
+    margin-top: 36px;
+  }
+}

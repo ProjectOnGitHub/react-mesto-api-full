@@ -1,0 +1,28 @@
+.popup__label {
+  display: block;
+  margin-bottom: 30px;
+}
+
+@media screen and (max-width: 510px) {
+  .popup__label {
+    margin-bottom: 20px;
+  }
+}
+
+.popup__label:last-of-type {
+  margin-bottom: 48px;
+}
+
+@media screen and (max-width: 510px) {
+  .popup__label:last-of-type {
+    margin-bottom: 42px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .popup__label:last-of-type {
+    margin-bottom: 36px;
+  }
+}
+
+

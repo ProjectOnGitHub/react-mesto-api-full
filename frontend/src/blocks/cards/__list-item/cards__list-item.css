@@ -1,0 +1,7 @@
+.cards__list-item {
+  position: relative;
+  max-width: 282px;
+  overflow: hidden;
+  border-radius: 10px;
+  background-color: #fff;
+}

@@ -1,0 +1,15 @@
+.popup {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, .5);
+  z-index: 2;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility .5s, opacity .5s ease-in-out;
+}

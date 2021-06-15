@@ -1,0 +1,22 @@
+.popup__fieldset {
+  width: calc(100% - 2 * 36px);
+  margin: 50px auto 36px;
+  padding: 0;
+  border: none;
+  text-align: center;
+}
+
+@media screen and (max-width: 510px) {
+  .popup__fieldset {
+    width: calc(100% - 2 * 28px);
+    margin-top: 43px;
+    margin-bottom: 30px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .popup__fieldset {
+    width: calc(100% - 2 * 20px);
+    margin-top: 36px;
+  }
+}

@@ -1,0 +1,14 @@
+.page {
+  display: flex;
+  flex-flow: column wrap;
+  box-sizing: border-box;
+  align-items: center;
+  background-color: #000;
+  font: normal 18px/22px 'Inter', Arial, sans-serif;
+  color: #fff;
+  -webkit-text-size-adjust: auto;
+  -ms-text-size-adjust: auto;
+  -moz-text-size-adjust: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
