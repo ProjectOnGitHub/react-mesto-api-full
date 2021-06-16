@@ -1,12 +1,26 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const cors = require('cors');
 const { errors } = require('celebrate');
 const { celebrate, Joi } = require('celebrate');
 const cookieParser = require('cookie-parser');
 const { createUser, login } = require('./controllers/users');
 const routes = require('./routes');
 const NotFoundError = require('./errors/NotFoundError');
+
+const options = {
+  origin: [
+    'http://localhost:8080',
+    'https://project-mesto.nomoredomains.club',
+    'https://ProjectOnGitHub.github.io',
+  ],
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+  allowedHeaders: ['Content-Type', 'origin', 'Authorization'],
+  credentials: true,
+};
 
 dotenv.config();
 
@@ -21,6 +35,7 @@ mongoose.connect('mongodb://localhost:27017/mestodb',
   });
 
 const app = express();
+app.use('*', cors(options));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json({ extended: true }));
 app.use(cookieParser());

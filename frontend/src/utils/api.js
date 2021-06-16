@@ -1,8 +1,7 @@
 class Api {
-  constructor({ baseUrl, token, cohortId }) {
+  constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
-    this._token = token;
-    this._cohortId = cohortId;
+    this.headers = headers;
   }
 
   _getResponse(res) {
@@ -10,21 +9,18 @@ class Api {
   }
 
   getInitialCards() {
-    return fetch(`${this._baseUrl}/${this._cohortId}/cards`, {
-      headers: {
-        authorization: this._token
-      }
+    return fetch(`${this._baseUrl}/cards`, {
+      headers: this.headers,
+      credentials: 'include',
     })
       .then(this._getResponse)
   }
 
   addCard({ name, link }) {
-    return fetch(`${this._baseUrl}/${this._cohortId}/cards`, {
+    return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
-      headers: {
-        authorization: this._token,
-        'Content-Type': 'application/json'
-      },
+      headers: this.headers,
+      credentials: 'include',
       body: JSON.stringify({
         name,
         link
@@ -34,31 +30,27 @@ class Api {
   }
 
   deleteCard(cardId) {
-    return fetch(`${this._baseUrl}/${this._cohortId}/cards/${cardId}`, {
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
-      headers: {
-        authorization: this._token,
-      }
+      headers: this.headers,
+      credentials: 'include',
     })
       .then(this._getResponse)
   }
 
   getUserInfo() {
-    return fetch(`${this._baseUrl}/${this._cohortId}/users/me`, {
-      headers: {
-        authorization: this._token
-      }
+    return fetch(`${this._baseUrl}/users/me`, {
+      headers: this.headers,
+      credentials: 'include',
     })
       .then(this._getResponse)
   }
 
   changeUserInfo({ name, about }) {
-    return fetch(`${this._baseUrl}/${this._cohortId}/users/me`, {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
-      headers: {
-        authorization: this._token,
-        'Content-Type': 'application/json'
-      },
+      headers: this.headers,
+      credentials: 'include',
       body: JSON.stringify({
         name,
         about
@@ -68,12 +60,10 @@ class Api {
   }
 
   changeUserAvatar({ avatar }) {
-    return fetch(`${this._baseUrl}/${this._cohortId}/users/me/avatar`, {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
-      headers: {
-        authorization: this._token,
-        'Content-Type': 'application/json'
-      },
+      headers: this.headers,
+      credentials: 'include',
       body: JSON.stringify({
         avatar
       })
@@ -83,12 +73,10 @@ class Api {
 
 
   changeLikeCardStatus(id, like) {
-    return fetch(`${this._baseUrl}/${this._cohortId}/cards/likes/${id}`, {
+    return fetch(`${this._baseUrl}/cards/likes/${id}`, {
       method: like ? 'PUT' : 'DELETE',
-      headers: {
-        authorization: this._token,
-        'Content-Type': 'application/json'
-      },
+      headers: this.headers,
+      credentials: 'include',
     })
       .then(this._getResponse)
   }
@@ -96,9 +84,7 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1',
-  cohortId: 'cohort-21',
-  token: '5391666e-5e33-4f71-9923-de80d868b155',
+  baseUrl: 'https://project-mesto.nomoredomains.club',
 });
 
 export default api;
