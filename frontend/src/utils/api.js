@@ -10,11 +10,10 @@ class Api {
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
-      method: "GET",
-      'credentials': 'include',
+      method: 'GET',
       headers: {
         authorization: this._token
-      },
+      }
     })
       .then(this._getResponse)
   }
@@ -22,12 +21,10 @@ class Api {
   addCard({ name, link }) {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
-      'credentials': 'include',
       headers: {
         authorization: this._token,
         'Content-Type': 'application/json'
       },
-
       body: JSON.stringify({
         name,
         link
@@ -39,23 +36,19 @@ class Api {
   deleteCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
-      'credentials': 'include',
       headers: {
         authorization: this._token,
-      },
-
+      }
     })
       .then(this._getResponse)
   }
 
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
-      method: "GET",
-      'credentials': 'include',
+      method: 'GET',
       headers: {
         authorization: this._token
-      },
-
+      }
     })
       .then(this._getResponse)
   }
@@ -63,12 +56,10 @@ class Api {
   changeUserInfo({ name, about }) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
-      'credentials': 'include',
       headers: {
         authorization: this._token,
         'Content-Type': 'application/json'
       },
-
       body: JSON.stringify({
         name,
         about
@@ -80,12 +71,10 @@ class Api {
   changeUserAvatar({ avatar }) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
-      'credentials': 'include',
       headers: {
         authorization: this._token,
         'Content-Type': 'application/json'
       },
-
       body: JSON.stringify({
         avatar
       })
@@ -101,20 +90,16 @@ class Api {
         authorization: this._token,
         'Content-Type': 'application/json'
       },
-
     })
       .then(this._getResponse)
   }
 
 }
 
-
 const api = new Api({
   //baseUrl: 'https://api-mesto.praktikum.space',
   baseUrl: 'http://localhost:3003',
-  headers: {
-    'Content-Type': 'application/json',
-  },
+  token: `Bearer ${localStorage.getItem('jwt')}`,
 });
 
 export default api;
