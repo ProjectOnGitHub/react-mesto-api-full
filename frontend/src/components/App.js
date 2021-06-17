@@ -135,7 +135,7 @@ function App() {
           setEmail('');
         })
     }
-  }, []);
+  }, [history]);
 
   function handleLoginSubmit(email, password) {
     auth.authorize(email, password)
