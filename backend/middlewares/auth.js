@@ -8,11 +8,13 @@ const { NODE_ENV, JWT_SECRET } = process.env;
 
 // eslint-disable-next-line
 module.exports = (req, res, next) => {
-  const token = req.cookies.jwt;
-  if (!token) {
-    next(new UnauthorizedError('Необходима авторизация'));
+  const { authorization } = req.headers;
+
+  if (!authorization || !authorization.startsWith('Bearer ')) {
+    throw new UnauthorizedError('Необходима авторизация');
   }
 
+  const token = authorization.replace('Bearer ', '');
   let payload;
   try {
     payload = jwt.verify(

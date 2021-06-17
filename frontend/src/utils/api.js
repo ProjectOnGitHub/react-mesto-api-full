@@ -1,7 +1,6 @@
 class Api {
-  constructor({ baseUrl, headers }) {
+  constructor({ baseUrl }) {
     this._baseUrl = baseUrl;
-    this.headers = headers;
   }
 
   _getResponse(res) {
@@ -10,7 +9,6 @@ class Api {
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
-      headers: this.headers,
       credentials: 'include',
     })
       .then(this._getResponse)
@@ -19,7 +17,7 @@ class Api {
   addCard({ name, link }) {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
-      headers: this.headers,
+      headers: this._headers,
       credentials: 'include',
       body: JSON.stringify({
         name,
@@ -32,7 +30,6 @@ class Api {
   deleteCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
-      headers: this.headers,
       credentials: 'include',
     })
       .then(this._getResponse)
@@ -40,7 +37,6 @@ class Api {
 
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
-      headers: this.headers,
       credentials: 'include',
     })
       .then(this._getResponse)
@@ -49,7 +45,7 @@ class Api {
   changeUserInfo({ name, about }) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
-      headers: this.headers,
+      headers: this._headers,
       credentials: 'include',
       body: JSON.stringify({
         name,
@@ -62,7 +58,7 @@ class Api {
   changeUserAvatar({ avatar }) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
-      headers: this.headers,
+      headers: this._headers,
       credentials: 'include',
       body: JSON.stringify({
         avatar
@@ -75,7 +71,7 @@ class Api {
   changeLikeCardStatus(id, like) {
     return fetch(`${this._baseUrl}/cards/likes/${id}`, {
       method: like ? 'PUT' : 'DELETE',
-      headers: this.headers,
+      headers: this._headers,
       credentials: 'include',
     })
       .then(this._getResponse)
@@ -84,7 +80,11 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: 'https://project-mesto.nomoredomains.club',
+  //baseUrl: 'https://api-mesto.praktikum.space',
+  baseUrl: 'http://localhost:3003',
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
 
 export default api;

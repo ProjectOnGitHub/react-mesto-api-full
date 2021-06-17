@@ -12,7 +12,10 @@ const NotFoundError = require('./errors/NotFoundError');
 const options = {
   origin: [
     'http://localhost:8080',
-    'https://project-mesto.nomoredomains.club',
+    'http://localhost:3000',
+    'http://localhost:3003',
+    'https://mesto.praktikum.space',
+    'https://api-mesto.praktikum.space',
     'https://ProjectOnGitHub.github.io',
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
@@ -24,7 +27,7 @@ const options = {
 
 dotenv.config();
 
-const { PORT = 3000 } = process.env;
+const { PORT = 3003 } = process.env;
 
 mongoose.connect('mongodb://localhost:27017/mestodb',
   {
