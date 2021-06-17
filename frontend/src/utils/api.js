@@ -1,6 +1,7 @@
 class Api {
-  constructor({ baseUrl }) {
+  constructor({ baseUrl, token }) {
     this._baseUrl = baseUrl;
+    this._token = token;
   }
 
   _getResponse(res) {
@@ -9,8 +10,11 @@ class Api {
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
-      credentials: 'include',
-
+      method: "GET",
+      'credentials': 'include',
+      headers: {
+        authorization: this._token
+      },
     })
       .then(this._getResponse)
   }
@@ -18,10 +22,12 @@ class Api {
   addCard({ name, link }) {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
+      'credentials': 'include',
       headers: {
+        authorization: this._token,
         'Content-Type': 'application/json'
       },
-      credentials: 'include',
+
       body: JSON.stringify({
         name,
         link
@@ -33,7 +39,10 @@ class Api {
   deleteCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
-      credentials: 'include',
+      'credentials': 'include',
+      headers: {
+        authorization: this._token,
+      },
 
     })
       .then(this._getResponse)
@@ -41,7 +50,11 @@ class Api {
 
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
-      credentials: 'include',
+      method: "GET",
+      'credentials': 'include',
+      headers: {
+        authorization: this._token
+      },
 
     })
       .then(this._getResponse)
@@ -50,11 +63,11 @@ class Api {
   changeUserInfo({ name, about }) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
+      'credentials': 'include',
       headers: {
-
+        authorization: this._token,
         'Content-Type': 'application/json'
       },
-      credentials: 'include',
 
       body: JSON.stringify({
         name,
@@ -67,11 +80,11 @@ class Api {
   changeUserAvatar({ avatar }) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
+      'credentials': 'include',
       headers: {
-
+        authorization: this._token,
         'Content-Type': 'application/json'
       },
-      credentials: 'include',
 
       body: JSON.stringify({
         avatar
@@ -85,10 +98,9 @@ class Api {
     return fetch(`${this._baseUrl}/cards/likes/${id}`, {
       method: like ? 'PUT' : 'DELETE',
       headers: {
-
+        authorization: this._token,
         'Content-Type': 'application/json'
       },
-      credentials: 'include',
 
     })
       .then(this._getResponse)
