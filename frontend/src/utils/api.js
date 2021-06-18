@@ -1,7 +1,6 @@
 class Api {
-  constructor({ baseUrl, token }) {
+  constructor({ baseUrl }) {
     this._baseUrl = baseUrl;
-    this._token = token;
   }
 
   _getResponse(res) {
@@ -12,7 +11,7 @@ class Api {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'GET',
       headers: {
-        authorization: this._token
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
       }
     })
       .then(this._getResponse)
@@ -22,7 +21,7 @@ class Api {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
       headers: {
-        authorization: this._token,
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -37,7 +36,7 @@ class Api {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
       headers: {
-        authorization: this._token,
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
       }
     })
       .then(this._getResponse)
@@ -47,7 +46,7 @@ class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'GET',
       headers: {
-        authorization: this._token
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
       }
     })
       .then(this._getResponse)
@@ -57,7 +56,7 @@ class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: {
-        authorization: this._token,
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -72,7 +71,7 @@ class Api {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: {
-        authorization: this._token,
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -87,7 +86,7 @@ class Api {
     return fetch(`${this._baseUrl}/cards/likes/${id}`, {
       method: like ? 'PUT' : 'DELETE',
       headers: {
-        authorization: this._token,
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
         'Content-Type': 'application/json'
       },
     })
@@ -99,7 +98,6 @@ class Api {
 const api = new Api({
   //baseUrl: 'https://api-mesto.praktikum.space',
   baseUrl: 'http://localhost:3003',
-  token: `Bearer ${localStorage.getItem('jwt')}`,
 });
 
 export default api;
