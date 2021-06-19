@@ -9,10 +9,11 @@ class Api {
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
-      method: 'GET',
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
-      }
+        authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+      credentials: "include",
+
     })
       .then(this._getResponse)
   }
@@ -21,9 +22,11 @@ class Api {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+        authorization: `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json'
       },
+      credentials: "include",
+
       body: JSON.stringify({
         name,
         link
@@ -36,18 +39,21 @@ class Api {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
-      }
+        authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+      credentials: "include",
+
     })
       .then(this._getResponse)
   }
 
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
-      method: 'GET',
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
-      }
+        authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+      credentials: "include",
+
     })
       .then(this._getResponse)
   }
@@ -56,9 +62,11 @@ class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+        authorization: `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json'
       },
+      credentials: "include",
+
       body: JSON.stringify({
         name,
         about
@@ -71,9 +79,11 @@ class Api {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+        authorization: `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json'
       },
+      credentials: "include",
+
       body: JSON.stringify({
         avatar
       })
@@ -86,9 +96,11 @@ class Api {
     return fetch(`${this._baseUrl}/cards/likes/${id}`, {
       method: like ? 'PUT' : 'DELETE',
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+        authorization: `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json'
       },
+      credentials: "include",
+
     })
       .then(this._getResponse)
   }

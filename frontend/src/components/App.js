@@ -24,7 +24,7 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
   const [currentUser, setCurrentUser] = useState({});
-  const [cards, setCards] = useState([]);
+  const [cards, setCards] = useState({});
   const [isRegisterSuccess, setIsRegisterSuccess] = useState(false);
   const [email, setEmail] = useState('');
   const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = useState(false);
@@ -119,7 +119,7 @@ function App() {
   }
 
   useEffect(() => {
-    const token = localStorage.getItem('jwt');
+    const token = localStorage.getItem('token');
     if (token) {
       auth.getContent(token)
         .then((res) => {
@@ -143,7 +143,7 @@ function App() {
         if (res.token) {
           setEmail(email);
           setLoggedIn(true);
-          localStorage.setItem('jwt', res.token)
+          localStorage.setItem('token', res.token)
           history.push('/');
         }
       })
@@ -172,7 +172,7 @@ function App() {
   function handleSignOut() {
     setEmail(null);
     setLoggedIn(false);
-    localStorage.removeItem('jwt');
+    localStorage.removeItem('token');
     history.push('/signin');
   }
 

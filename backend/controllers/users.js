@@ -15,7 +15,7 @@ module.exports.getUsers = (req, res, next) => {
   User.find({})
     .then((users) => res
       .status(200)
-      .send({ data: users }))
+      .send(users))
     .catch(next);
 };
 
@@ -25,7 +25,7 @@ module.exports.getUserById = (req, res, next) => {
     .then((user) => {
       res
         .status(200)
-        .send({ data: user });
+        .send(user);
     })
     .catch((err) => {
       if (err.name === 'CastError') {
@@ -42,7 +42,7 @@ module.exports.getCurrentUser = (req, res, next) => {
     .then((user) => {
       res
         .status(200)
-        .send({ data: user });
+        .send(user);
     })
     .catch((err) => {
       if (err.name === 'CastError') {
@@ -91,7 +91,7 @@ module.exports.updateProfile = (req, res, next) => {
     .orFail(new NotFoundError('Пользователь по указанному _id не найден'))
     .then((user) => res
       .status(200)
-      .send({ data: user }))
+      .send(user))
     .catch((err) => {
       if (err.name === 'ValidationError' || err.name === 'CastError') {
         throw new BadRequestError('Переданы некорректные данные при обновлении профиля.');
@@ -111,7 +111,7 @@ module.exports.updateAvatar = (req, res, next) => {
     .orFail(new NotFoundError('Пользователь по указанному _id не найден'))
     .then((user) => res
       .status(200)
-      .send({ data: user }))
+      .send(user))
     .catch((err) => {
       if (err.name === 'ValidationError' || err.name === 'CastError') {
         throw new BadRequestError('Переданы некорректные данные при обновлении профиля.');
