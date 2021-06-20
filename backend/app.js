@@ -12,8 +12,11 @@ dotenv.config();
 const options = {
   origin: [
     'http://localhost:3000',
-    'http://localhost:3003', // апи
-
+    'http://localhost:3003',
+    'http://mesto.praktikum.space',
+    'https://mesto.praktikum.space',
+    'http://api-mesto.praktikum.space',
+    'https://api-mesto.praktikum.space',
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   preflightContinue: false,
