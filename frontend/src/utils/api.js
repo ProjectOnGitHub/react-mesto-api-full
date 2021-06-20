@@ -108,8 +108,8 @@ class Api {
 }
 
 const api = new Api({
-  //baseUrl: 'https://api-mesto.praktikum.space',
-  baseUrl: 'http://localhost:3003',
+  baseUrl: 'https://api-mesto.praktikum.space',
+  // baseUrl: 'http://localhost:3003',
 });
 
 export default api;

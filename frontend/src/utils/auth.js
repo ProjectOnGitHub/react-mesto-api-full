@@ -1,5 +1,5 @@
-//export const BASE_URL = "https://api-mesto.praktikum.space";
-export const BASE_URL = "http://localhost:3003";
+export const BASE_URL = "https://api-mesto.praktikum.space";
+// export const BASE_URL = "http://localhost:3003";
 
 const getResponse = (res) => {
   return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)
