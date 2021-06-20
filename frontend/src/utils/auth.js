@@ -10,6 +10,8 @@ export const register = (email, password) => {
     headers: {
       'Content-Type': 'application/json'
     },
+    credentials: "include",
+
     body: JSON.stringify({ password, email })
   })
     .then(getResponse);
@@ -23,6 +25,7 @@ export const authorize = (email, password) => {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
+    credentials: "include",
     body: JSON.stringify({ email, password })
   })
     .then(getResponse)
@@ -41,7 +44,7 @@ export const getContent = (token) => {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
-
+    credentials: "include",
   })
     .then(getResponse);
 }
