@@ -56,7 +56,7 @@ function App() {
   }
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('jwt');
     if (loggedIn) {
       Promise.all([
         api.getUserInfo(token),
@@ -64,7 +64,7 @@ function App() {
       ])
         .then(([info, cards]) => {
           setCurrentUser(info);
-          setCards(cards);
+          setCards(cards.reverse());
         })
         .catch((err) => {
           console.log(`Ошибка ${err}`);
@@ -120,7 +120,7 @@ function App() {
   }
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('jwt');
     if (token) {
       auth.getContent(token)
         .then((res) => {
@@ -144,7 +144,7 @@ function App() {
         if (res.token) {
           setEmail(email);
           setLoggedIn(true);
-          localStorage.setItem('token', res.token)
+          localStorage.setItem('jwt', res.token)
           history.push('/');
         }
       })
@@ -173,7 +173,7 @@ function App() {
   function handleSignOut() {
     setEmail(null);
     setLoggedIn(false);
-    localStorage.removeItem('token');
+    localStorage.removeItem('jwt');
     history.push('/signin');
   }
 
