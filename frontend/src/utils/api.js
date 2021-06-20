@@ -1,3 +1,5 @@
+import baseUrl from './utils';
+
 class Api {
   constructor({ baseUrl }) {
     this._baseUrl = baseUrl;
@@ -106,10 +108,8 @@ class Api {
   }
 
 }
-
 const api = new Api({
-  baseUrl: 'https://api-mesto.praktikum.space',
-  // baseUrl: 'http://localhost:3003',
+  baseUrl,
 });
 
 export default api;

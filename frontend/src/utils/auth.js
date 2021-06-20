@@ -1,11 +1,10 @@
-export const BASE_URL = "https://api-mesto.praktikum.space";
-// export const BASE_URL = "http://localhost:3003";
+import baseUrl from './utils';
 
 const getResponse = (res) => {
   return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)
 }
 export const register = (email, password) => {
-  return fetch(`${BASE_URL}/signup`, {
+  return fetch(`${baseUrl}/signup`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -19,7 +18,7 @@ export const register = (email, password) => {
 
 
 export const authorize = (email, password) => {
-  return fetch(`${BASE_URL}/signin`, {
+  return fetch(`${baseUrl}/signin`, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -38,7 +37,7 @@ export const authorize = (email, password) => {
 };
 
 export const getContent = (token) => {
-  return fetch(`${BASE_URL}/users/me`, {
+  return fetch(`${baseUrl}/users/me`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
