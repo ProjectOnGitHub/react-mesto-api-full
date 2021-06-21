@@ -24,7 +24,7 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
   const [currentUser, setCurrentUser] = useState({});
-  const [cards, setCards] = useState({});
+  const [cards, setCards] = useState([]);
   const [isRegisterSuccess, setIsRegisterSuccess] = useState(false);
   const [email, setEmail] = useState('');
   const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = useState(false);
@@ -62,9 +62,9 @@ function App() {
         api.getUserInfo(token),
         api.getInitialCards(token)
       ])
-        .then(([info, cards]) => {
-          setCurrentUser(info);
-          setCards(cards.reverse());
+        .then(([userInfo, cardsData]) => {
+          setCurrentUser(userInfo);
+          setCards(cardsData.reverse());
         })
         .catch((err) => {
           console.log(`Ошибка ${err}`);
@@ -126,7 +126,7 @@ function App() {
         .then((res) => {
           if (res) {
             setLoggedIn(true);
-            setEmail(res.data.email);
+            setEmail(res.email);
             history.push('/');
           }
         })
