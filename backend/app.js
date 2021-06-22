@@ -9,6 +9,18 @@ const routes = require('./routes');
 const NotFoundError = require('./errors/NotFoundError');
 
 dotenv.config();
+const options = {
+  origin: [
+    'http://localhost:3000',
+    'http://mesto.praktikum.space',
+    'https://mesto.praktikum.space',
+  ],
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+  allowedHeaders: ['Content-Type', 'origin', 'Authorization'],
+  credentials: true,
+};
 
 const { PORT = 3003 } = process.env;
 
@@ -22,7 +34,7 @@ mongoose.connect('mongodb://localhost:27017/mestodb',
 
 const app = express();
 
-app.use(cors());
+app.use('*', cors(options));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json({ extended: true }));
