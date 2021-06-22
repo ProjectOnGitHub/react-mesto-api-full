@@ -14,6 +14,7 @@ class Api {
       headers: {
         authorization: `Bearer ${localStorage.getItem('jwt')}`,
       },
+      credentials: 'include',
     })
       .then(this._getResponse)
   }
@@ -25,6 +26,7 @@ class Api {
         authorization: `Bearer ${localStorage.getItem('jwt')}`,
         'Content-Type': 'application/json'
       },
+      credentials: 'include',
       body: JSON.stringify({
         name,
         link
@@ -39,6 +41,7 @@ class Api {
       headers: {
         authorization: `Bearer ${localStorage.getItem('jwt')}`,
       },
+      credentials: 'include',
     })
       .then(this._getResponse)
   }
@@ -48,6 +51,7 @@ class Api {
       headers: {
         authorization: `Bearer ${localStorage.getItem('jwt')}`,
       },
+      credentials: 'include',
     })
       .then(this._getResponse)
   }
@@ -59,6 +63,7 @@ class Api {
         authorization: `Bearer ${localStorage.getItem('jwt')}`,
         'Content-Type': 'application/json'
       },
+      credentials: 'include',
       body: JSON.stringify({
         name,
         about
@@ -74,6 +79,7 @@ class Api {
         authorization: `Bearer ${localStorage.getItem('jwt')}`,
         'Content-Type': 'application/json'
       },
+      credentials: 'include',
       body: JSON.stringify({
         avatar
       })
@@ -89,6 +95,7 @@ class Api {
         authorization: `Bearer ${localStorage.getItem('jwt')}`,
         'Content-Type': 'application/json'
       },
+      credentials: 'include',
     })
       .then(this._getResponse)
   }
@@ -100,6 +107,7 @@ class Api {
         authorization: `Bearer ${localStorage.getItem('jwt')}`,
         'Content-Type': 'application/json'
       },
+      credentials: 'include',
     })
       .then(this._getResponse)
   }
