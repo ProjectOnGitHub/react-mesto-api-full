@@ -1,4 +1,5 @@
 const express = require('express');
+const helmet = require('helmet');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
@@ -9,19 +10,22 @@ const routes = require('./routes');
 const NotFoundError = require('./errors/NotFoundError');
 
 dotenv.config();
-const options = {
-  origin: [
-    'http://localhost:3000',
-    'http://mesto.praktikum.space',
-    'https://mesto.praktikum.space',
-  ],
-  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-  preflightContinue: false,
-  optionsSuccessStatus: 204,
-  allowedHeaders: ['Content-Type', 'origin', 'Authorization'],
-  credentials: true,
-};
+const CORS_WHITELIST = [
+  'http://localhost:3000',
+  'http://mesto.praktikum.space',
+  'https://mesto.praktikum.space',
+];
 
+const corsOption = {
+  credentials: true,
+  origin: function checkCorsList(origin, callback) {
+    if (CORS_WHITELIST.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+};
 const { PORT = 3003 } = process.env;
 
 mongoose.connect('mongodb://localhost:27017/mestodb',
@@ -33,9 +37,8 @@ mongoose.connect('mongodb://localhost:27017/mestodb',
   });
 
 const app = express();
-
-app.use('*', cors(options));
-
+app.use(helmet());
+app.use(cors(corsOption));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json({ extended: true }));
 
