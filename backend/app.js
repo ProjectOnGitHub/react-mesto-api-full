@@ -10,7 +10,6 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const routes = require('./routes');
 const NotFoundError = require('./errors/NotFoundError');
 
-
 dotenv.config();
 const CORS_WHITELIST = [
   'http://localhost:3000',
