@@ -1,3 +1,9 @@
+### МЕСТО
+
+[Сайт: mesto.praktikum.space](https://mesto.praktikum.space/)
+[API: api-mesto.praktikum.space](https://api-mesto.praktikum.space/)
+[IP: 84.252.139.224](https://84.252.139.224/)
+
 ### Обзор
 
 Сервис Место представляет собой страницу, куда можно добавлять фотографии, удалять их и ставить лайки.
