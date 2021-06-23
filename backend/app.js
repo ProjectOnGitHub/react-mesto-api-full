@@ -24,6 +24,7 @@ const corsOption = {
     } else {
       callback(new Error('Not allowed by CORS'));
     }
+
   },
 };
 const { PORT = 3003 } = process.env;
@@ -35,7 +36,6 @@ mongoose.connect('mongodb://localhost:27017/mestodb',
     useUnifiedTopology: true,
     useFindAndModify: false,
   });
-
 const app = express();
 app.use(helmet());
 app.use(cors(corsOption));

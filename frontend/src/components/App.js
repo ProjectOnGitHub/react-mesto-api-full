@@ -156,6 +156,7 @@ function App() {
   }
 
   function handleRegisterSubmit(email, password) {
+    console.log('1');
     auth.register(email, password)
       .then(() => {
         setIsRegisterSuccess(true);
