@@ -6,8 +6,10 @@ const cors = require('cors');
 const { errors } = require('celebrate');
 const { celebrate, Joi } = require('celebrate');
 const { createUser, login } = require('./controllers/users');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 const routes = require('./routes');
 const NotFoundError = require('./errors/NotFoundError');
+
 
 dotenv.config();
 const CORS_WHITELIST = [
@@ -42,6 +44,8 @@ app.use(cors(corsOption));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json({ extended: true }));
 
+app.use(requestLogger);
+
 app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
@@ -66,6 +70,9 @@ app.post('/signup', celebrate({
 }), createUser);
 
 app.use(routes);
+
+app.use(errorLogger);
+
 app.use('*', (req, res, next) => next(new NotFoundError('Запрашиваемый ресурс не найден')));
 
 app.use(errors());
