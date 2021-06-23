@@ -26,7 +26,6 @@ const corsOption = {
     } else {
       callback(new Error('Not allowed by CORS'));
     }
-
   },
 };
 const { PORT = 3003 } = process.env;
