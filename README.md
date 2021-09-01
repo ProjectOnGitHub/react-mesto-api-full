@@ -1,8 +1,4 @@
-### МЕСТО
-
-- [Сайт: mesto.praktikum.space](https://mesto.praktikum.space/)
-- [API: api-mesto.praktikum.space](https://api-mesto.praktikum.space/)
-- [IP: 84.252.139.224](https://84.252.139.224/)
+### Сервис Место (итоговая версия)
 
 ### Обзор
 
