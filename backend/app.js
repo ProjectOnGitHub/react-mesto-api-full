@@ -27,7 +27,7 @@ const corsOption = {
     }
   },
 };
-const { PORT = 3003 } = process.env;
+const { PORT = 3000 } = process.env;
 
 mongoose.connect('mongodb://localhost:27017/mestodb',
   {
